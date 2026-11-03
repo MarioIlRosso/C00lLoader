@@ -1,0 +1,12 @@
+/build/
+
+/esp/EFI/BOOT/*.EFI
+
+*.img
+*.iso
+
+/build/OVMF_VARS.fd
+
+*.log
+*.dump
+*.core
