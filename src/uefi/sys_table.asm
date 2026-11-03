@@ -1,7 +1,7 @@
 bits 64
 
 ; First entry of EFI_SYSTEM_TABLE.
-struct EFI_TABLE_HEADER
+struc EFI_TABLE_HEADER
 	.Signature: resq 1
 	.Revision: resd 1
 	.HeaderSize: resd 1
@@ -9,7 +9,7 @@ struct EFI_TABLE_HEADER
 	.Reserved: resd 1
 endstruc
 
-; Almos all fields here are qwords cause 64x has 8 byte ptrs.
+; Almost all fields here are qwords cause 64x has 8 byte ptrs.
 struc EFI_SYSTEM_TABLE
 	.Hdr: resb EFI_TABLE_HEADER_size	; EFI_TABLE_HEADER_size is auto defined by assembly.
 	.FirmwareVendor: resq 1
