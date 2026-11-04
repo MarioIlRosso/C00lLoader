@@ -14,6 +14,7 @@ struc EFI_SYSTEM_TABLE
 	.Hdr: resb EFI_TABLE_HEADER_size	; EFI_TABLE_HEADER_size is auto defined by assembly.
 	.FirmwareVendor: resq 1
 	.FirmwareRevision: resd 1
+	resd 1								; See below on why we pad here.
 	.ConsoleInHandle: resq 1
 	.ConIn: resq 1
 	.ConsoleOutHandle: resq 1
@@ -25,3 +26,7 @@ struc EFI_SYSTEM_TABLE
 	.NumberOfTableEntries: resq 1
 	.ConfigurationTable: resq 1
 endstruc
+
+; The definition in C of EFI_SYSTEM_TABLE for UEFI uses a UINT32 for the firmware revision.
+; And it's squished around two fields that occupy 8 bytes. this hurts alignment.
+; In C, this would be fixed cause the compiler automatically pads it, but not in assembly.
